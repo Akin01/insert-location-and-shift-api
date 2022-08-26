@@ -31,7 +31,7 @@ class User(db.Model):
         self.password = generate_password_hash(password)
 
     def __repr__(self):
-        return '<id {}>'.format(self.id)
+        return '<id {}>'.format(self.id_user)
 
 
 class Lokasi(db.Model):
@@ -208,8 +208,6 @@ def data_get_and_create():
         serializer = DataSchema(many=True)
         data = Data.query.all()
 
-        for i in data:
-            print(i.__dict__['id_lokasi'])
         return format_response(serializer.dump(data))
 
     elif request.method == "POST":
